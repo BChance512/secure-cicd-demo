@@ -10,15 +10,17 @@ The goal of this repository is to showcase automated testing, security scanning,
 
 ## Application
 
-The application is a lightweight Flask API that exposes a single health endpoint.
+The application is a lightweight Flask API that exposes a root endpoint (/) and a health endpoint (/health).
 
-### Endpoint
+### Endpoints
 
-```
+GET /
+
+Returns a simple welcome message indicating that the application is running.
+
 GET /health
-```
 
-### Response
+Returns:
 
 ```json
 {
@@ -53,10 +55,15 @@ This repository demonstrates several security best practices:
 - Automated security validation before deployment
 - Automated container image publishing through GitHub Actions
 
-During development, Bandit identified the use of `debug=True` in the Flask application. The issue was remediated by removing debug mode before deployment.
+During development, Bandit identified the use of debug=True in the Flask application. The application was updated to disable debug mode prior to the final pipeline execution, allowing the security gate to pass.
 
 Additionally, pip-audit identified outdated dependencies which were upgraded to secure versions before the final pipeline execution.
 
+### Pipeline Behavior
+
+The pipeline is intentionally configured to fail closed. If unit tests, static code analysis, dependency scanning, or container image publishing fails, the workflow stops and deployment does not complete.
+
+This approach ensures that only validated code that passes automated testing and security checks is published, demonstrating a security-first CI/CD workflow.
 ---
 
 ## Running Locally
