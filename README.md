@@ -63,7 +63,8 @@ Additionally, pip-audit identified outdated dependencies which were upgraded to 
 
 The pipeline is intentionally configured to fail closed. If unit tests, static code analysis, dependency scanning, or container image publishing fails, the workflow stops and deployment does not complete.
 
-This approach ensures that only validated code that passes automated testing and security checks is published, demonstrating a security-first CI/CD workflow.
+This approach ensures that only code passing automated testing and security validation is published, demonstrating a security-first CI/CD workflow.
+
 ---
 
 ## Running Locally
