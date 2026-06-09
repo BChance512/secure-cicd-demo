@@ -54,4 +54,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/bchance512/secure-cicd-demo:latest
+          tags: |
+            ghcr.io/bchance512/secure-cicd-demo:latest
+            ghcr.io/bchance512/secure-cicd-demo:${{ github.sha }}
